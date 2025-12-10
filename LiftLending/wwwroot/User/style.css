@@ -1,0 +1,284 @@
+/* Import Google Font */
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&display=swap');
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Poppins', sans-serif;
+}
+
+body {
+    background-color: #000;
+    color: white;
+    text-align: center;
+}
+
+/* HEADER */
+header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 55px;
+    /* background: #73dfd8; */
+    background-color: #3DB7E4;
+    color: white;
+    width: 100%;
+}
+
+.logo {
+    font-size: 24px;
+    font-weight: 700;
+}
+
+.logo span {
+    font-weight: 300;
+}
+
+.disclosure {
+    font-size: 14px;
+}
+
+/* HERO SECTION */
+.hero {
+    width: 100% !important;
+    height: 80vh;
+    background-image:url(/User/images/Clip-path-group-2.png);
+    background-size: 100% 100%;
+    background-size: cover;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.button {
+    cursor: pointer;
+    padding: 5px 20px;
+    border-radius: 10px;
+    border: 3px #000 !important;
+}
+
+.hero .container{
+    bottom: 300px !important;
+    position: relative;
+    width: 30%;
+    height: 600px;
+    /* background-color: #4d3e3e; */
+}
+
+h1 {
+    font-size: 32px;
+    font-weight: 600;
+}
+
+.container p {
+    font-size: 18px;
+    color: #ffffff;
+    text-align: center !important;
+}
+
+/* PROFILE IMAGE */
+.profile img {
+    width: 150px;
+    height: 150px;
+    background-size: cover;
+    background-size: 100% 100%;
+    border-radius: 50%;
+    margin: 20px 0;
+    border: 10px solid #ffffff;
+    box-shadow: 0px 4px 10px rgba(255, 255, 255, 0.2);
+}
+
+/* PROGRESS BAR */
+.progress-bar {
+    width: 80%;
+    height: 20px;
+    background: #374151;
+    margin: 20px auto;
+    border-radius: 50px;
+    overflow: hidden;
+    position: relative;
+}
+
+.progress {
+    width: 10%;
+    height: 100%;
+    background: linear-gradient(90deg, #73dfd8, #00d4ff);
+    border-radius: 50px;
+    animation: progressAnim 2s ease-in-out infinite alternate;
+}
+
+
+
+h2 {
+    font-size: 40px;
+    /* color: #73dfd8; */
+    color: #00d4ff;
+    margin-top: 20px;
+}
+
+.question {
+    font-size: 20px;
+    margin: 10px 0 20px;
+}
+
+/* BUTTONS */
+.options button {
+    width: 80%;
+    /* max-width: 300px; */
+    padding: 15px;
+    margin: 10px 0;
+    border: none;
+    /* background: #73dfd8; */
+    background-color: #3DB7E4;
+    color: white;
+    font-size: 18px;
+    border-radius: 8px;
+    transition: 0.3s;
+    cursor: pointer;
+    box-shadow: 0px 4px 8px rgba(123, 104, 238, 0.4);
+}
+
+.options button:hover {
+    background: #00bafd;
+    /* transform: scale(1.05); */
+}
+
+/* RESPONSIVE DESIGN */
+@media (max-width: 768px) {
+    header {
+        flex-direction: column;
+        text-align: center;
+    }
+
+    .progress-bar {
+        width: 90%;
+    }
+    .hero .container{
+        bottom: 80px !important;
+        position: relative;
+        width: 100%;
+        height: 600px;
+        /* background-color: #4d3e3e; */
+    }
+    
+}
+
+@media (max-width: 480px) {
+    .hero {
+        padding: 30px 15px;
+    }
+
+    h1 {
+        font-size: 24px;
+    }
+
+    h2 {
+        font-size: 20px;
+    }
+
+    .options button {
+        font-size: 16px;
+        padding: 12px;
+    }
+    .hero .container{
+        bottom: 80px !important;
+        position: relative;
+        width: 100%;
+        height: 600px;
+        /* background-color: #4d3e3e; */
+    }
+    
+    
+}
+
+
+
+
+
+.popup-button {
+    padding: 12px 20px;
+    font-size: 16px;
+    cursor: pointer;
+    background-color: #28a745;
+    color: white;
+    border: none;
+    border-radius: 5px;
+}
+
+/* Popup Box Styling */
+.custom-popup {
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    background: white;
+    /* width: 300px; */
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0px 0px 15px rgba(0, 0, 0, 0.2);
+    display: none;  /* Hidden initially */
+}
+
+/* Overlay (Background Blur) */
+.popup-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.5);
+    display: none;
+}
+
+/* Close Button */
+.close-popup {
+    /* background-color: #3DB7E4; */
+    color: rgb(0, 0, 0);
+    border: none;
+    padding: 5px 10px;
+    cursor: pointer;
+    float: right;
+    border-radius: 5px;
+    font-size: 20px;
+}
+
+.custom-popup h2 , p{
+    text-align: start;
+    color: #000;
+    padding: 10px 30px;
+}
+/* Add this to your existing CSS file */
+.new-slide {
+    margin-top: 20px;
+}
+
+    .new-slide h2 {
+        font-size: 24px;
+        margin-bottom: 10px;
+    }
+
+    .new-slide .options {
+        display: flex;
+        flex-direction: column;
+        gap: 10px;
+    }
+
+    .new-slide button {
+        padding: 10px;
+        font-size: 16px;
+        cursor: pointer;
+    }
+
+    .new-slide form {
+        display: flex;
+        flex-direction: column;
+        gap: 10px;
+    }
+
+    .new-slide input {
+        padding: 8px;
+        font-size: 16px;
+    }
+
+
+

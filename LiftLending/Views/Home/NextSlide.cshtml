@@ -1,0 +1,60 @@
+﻿
+@{
+    ViewData["Title"] = "NextSlide";
+}
+
+<h1>NextSlide</h1>
+
+<html>
+<body>
+<div class="loan-slide" id="loanSlide">
+    <h2>PERSONAL LOAN</h2>
+    <p class="loan-question">What size loan are you looking for?</p>
+    <p>We connect you with loans up to $250,000.</p>
+    <button id="goBack">Go Back</button>
+</div>
+
+<!-- Popup Box -->
+<div class="popup-overlay" id="popupOverlay"></div>
+<div class="custom-popup" id="popupBox">
+    <button class="close-popup" id="closePopup">X</button>
+    <h2>Advertiser Disclosure</h2>
+    <p>Reserve My Loan (“RML” or “Reserve”) is a for-profit advertising network...</p>
+</div>
+    <script>
+    document.addEventListener("DOMContentLoaded", function () {
+    const loanOptions = document.querySelectorAll(".loan-option");
+    const loanSlide = document.getElementById("loanSlide");
+    const goBackBtn = document.getElementById("goBack");
+    const heroSection = document.querySelector(".hero");
+
+    // Show Loan Size Slide
+    loanOptions.forEach(button => {
+    button.addEventListener("click", function () {
+    heroSection.style.display = "none";  // Hide first slide
+    loanSlide.style.display = "block";  // Show new slide
+    });
+    });
+
+    // Go Back to Previous Slide
+    goBackBtn.addEventListener("click", function () {
+    loanSlide.style.display = "none";  // Hide new slide
+    heroSection.style.display = "block";  // Show first slide
+    });
+
+    // Popup Functionality
+    document.getElementById("showPopup")?.addEventListener("click", function () {
+    document.getElementById("popupBox").style.display = "block";
+    document.getElementById("popupOverlay").style.display = "block";
+    });
+
+    document.getElementById("closePopup")?.addEventListener("click", function () {
+    document.getElementById("popupBox").style.display = "none";
+    document.getElementById("popupOverlay").style.display = "none";
+    });
+    });
+    </script>
+    <script src="~/user/script.js"></script>
+</body>
+</html>
+

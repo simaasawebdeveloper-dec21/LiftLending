@@ -1,0 +1,121 @@
+﻿<div class="hero">
+    <div class="container">
+        <h1>Hi, I’m Allison,</h1>
+        <p>Your loan expert</p>
+        <div class="profile">
+            <img src="/user/images/one-(2).png" alt="Allison">
+        </div>
+
+        <div class="progress-bar">
+            <div class="progress"></div>
+        </div>
+
+        <h2>PERSONAL LOAN</h2>
+        <p class="question">Why do you need a loan?</p>
+
+        <div class="options">
+            <button id="debtConsolidation">Debt Consolidation</button>
+            <button id="creditCardRefi">Credit Card Refi</button>
+            <button id="homeImprovement">Home Improvement</button>
+        </div>
+
+        <!-- New Slide for Credit Score (Hidden Initially) -->
+        <div id="creditScoreSlide" class="new-slide" style="display: none;">
+            <h2>What is your credit score?</h2>
+            <div class="options">
+                <button id="excellentCredit">Excellent (720+)</button>
+                <button id="goodCredit">Good (680-719)</button>
+                <button id="fairCredit">Fair (640-679)</button>
+                <button id="poorCredit">Poor (639 or less)</button>
+            </div>
+        </div>
+
+        <!-- New Slide for Name and Contact (Hidden Initially) -->
+        <div id="contactSlide" class="new-slide" style="display: none;">
+            <h2>Enter your details</h2>
+            <form id="contactForm">
+                <label for="name">Name:</label>
+                <input type="text" id="name" name="name" required>
+                <br>
+                <label for="contact">Contact Number:</label>
+                <input type="text" id="contact" name="contact" required>
+                <br>
+                <button type="submit">Submit</button>
+            </form>
+        </div>
+    </div>
+</div>
+
+<!-- Popup Box -->
+<div class="popup-overlay" id="popupOverlay"></div>
+<div class="custom-popup" id="popupBox">
+    <button class="close-popup" id="closePopup">X</button>
+    <h2>Advertiser Disclosure</h2>
+    <p>Reserve My Loan (“RML” or “Reserve”) is a for-profit advertising network. We receive compensation, in the form of referral fees, from the lenders and / or lending partners, or other offers that we direct you to. Therefore, the offer order may be based on conversion probability, compensation from our partners, and other factors. The offer you receive may be coming from the company that bid the most for your information. RML does not always provide you with an offer with the best rates or terms. Our website does not include all the companies or all available offers. We encourage you to research all available loans options for your situation.</p>
+</div>
+
+@section Scripts {
+    <script>
+        // Show the credit score slide when a loan option is clicked
+        document.getElementById('debtConsolidation').addEventListener('click', function () {
+            showSlide('creditScoreSlide');
+        });
+        document.getElementById('creditCardRefi').addEventListener('click', function () {
+            showSlide('creditScoreSlide');
+        });
+        document.getElementById('homeImprovement').addEventListener('click', function () {
+            showSlide('creditScoreSlide');
+        });
+
+        // Show the contact slide when a credit score option is clicked
+        document.getElementById('excellentCredit').addEventListener('click', function () {
+            showSlide('contactSlide');
+        });
+        document.getElementById('goodCredit').addEventListener('click', function () {
+            showSlide('contactSlide');
+        });
+        document.getElementById('fairCredit').addEventListener('click', function () {
+            showSlide('contactSlide');
+        });
+        document.getElementById('poorCredit').addEventListener('click', function () {
+            showSlide('contactSlide');
+        });
+
+        // Handle form submission
+        document.getElementById('contactForm').addEventListener('submit', function (e) {
+            e.preventDefault();
+            const name = document.getElementById('name').value;
+            const contact = document.getElementById('contact').value;
+
+            // Send data to the backend
+            saveData(name, contact);
+        });
+
+        function showSlide(slideId) {
+            // Hide all slides
+            document.querySelectorAll('.new-slide').forEach(slide => {
+                slide.style.display = 'none';
+            });
+            // Show the selected slide
+            document.getElementById(slideId).style.display = 'block';
+        }
+
+        function saveData(name, contact) {
+            fetch('/Home/SaveData', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                },
+                body: JSON.stringify({ name: name, contact: contact }),
+            })
+                .then(response => response.json())
+                .then(data => {
+                    alert('Data saved successfully!');
+                    console.log('Success:', data);
+                })
+                .catch((error) => {
+                    console.error('Error:', error);
+                });
+        }
+    </script>
+}

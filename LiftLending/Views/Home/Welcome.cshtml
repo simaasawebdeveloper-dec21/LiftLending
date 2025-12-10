@@ -1,0 +1,51 @@
+﻿@{
+    ViewData["Title"] = "Welcome";
+}
+<html>
+<style>
+    .welcome-container {
+        text-align: center;
+        margin-top: 50px;
+    }
+
+        .welcome-container h1 {
+            font-size: 36px;
+            color: #333;
+        }
+
+        .welcome-container p {
+            font-size: 18px;
+            color: #666;
+        }
+
+</style>
+<div class="welcome-container">
+    <h1>Welcome, @ViewBag.UserName!</h1>
+    <p>Thank you for submitting your details. We will contact you shortly.</p>
+</div>
+<script>
+    document.getElementById('contactForm').addEventListener('submit', function (e) {
+        e.preventDefault();
+        const name = document.getElementById('name').value;
+        const contact = document.getElementById('contact').value;
+
+        // Submit the form data to the backend
+        fetch('/Home/SaveData', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/x-www-form-urlencoded',
+            },
+            body: `name=${encodeURIComponent(name)}&contact=${encodeURIComponent(contact)}`,
+        })
+            .then(response => {
+                if (response.redirected) {
+                    // Redirect to the new page
+                    window.location.href = response.url;
+                }
+            })
+            .catch((error) => {
+                console.error('Error:', error);
+            });
+    });
+</script>
+</html>
